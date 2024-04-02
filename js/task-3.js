@@ -48,32 +48,28 @@
 
 class StringBuilder {
   #value;
-
-  constructor({ initialValue }) {
+  constructor(initialValue) {
     this.#value = initialValue;
   }
-
   getValue() {
     return this.#value;
   }
 
   padEnd(str) {
-    this.#value += str;
-    return this.#value;
+    this.#value = `${this.#value}${str}`;
   }
 
   padStart(str) {
-    this.#value = str + this.#value;
-    return this.#value;
+    this.#value = `${str}${this.#value}`;
   }
 
   padBoth(str) {
-    this.#value = str + this.#value + str;
-    return this.#value;
+    this.padStart(str);
+    this.padEnd(str);
   }
 }
+const builder = new StringBuilder('.');
 
-const builder = new StringBuilder({ initialValue: '.' });
 console.log(builder.getValue()); // "."
 builder.padStart('^');
 console.log(builder.getValue()); // "^."
